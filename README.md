@@ -27,6 +27,8 @@ gcloud functions deploy firebase-jwts --region=europe-west1 --runtime=nodejs16 -
 
 After deploying this Cloud Function, use the following Hasura configuration:
 
-HASURA_GRAPHQL_JWT_SECRET={ "jwk_url": "https://region-projectid.cloudfunctions.net/function-name", "audience": "projectid" }
+```
+HASURA_GRAPHQL_JWT_SECRET={ "jwk_url": "https://region-projectid.cloudfunctions.net/firebase-jwts", "audience": "projectid" }
+```
 
 The `audience` part is important, according to the Hasura documentation.
