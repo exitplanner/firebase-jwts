@@ -20,7 +20,7 @@ The following commands will create a Google Cloud Function called firebase-jwts
 
 ```shell
 npm run build
-gcloud functions deploy firebase-jwts --region=europe-west1 --runtime=nodejs16 --allow-unauthenticated --trigger-http --source ./build --entry-point=fetchJwts
+gcloud functions deploy firebase-jwts --region=europe-west1 --runtime=nodejs18 --allow-unauthenticated --trigger-http --source ./build --entry-point=fetchJwts
 ```
 
 ## How to use with Hasura
