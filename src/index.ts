@@ -19,5 +19,15 @@ export async function fetchJwts(_: Request, res: Response) {
     return prev;
   });
 
+  // The securetoken endpoint from Google returns a cache-control header that looks something like:
+  //   public, max-age=19606, must-revalidate, no-transform
+  // While the sessionCookie endpoint has a cache-control of:
+  //   no-cache, no-store, max-age=0, must-revalidate
+  // Basically: Don't store the public keys at all for session token.
+  // The lowest common denominator here would be to use the max-age=0 header,
+  // but in practice the keys don't get updated that frequently, so we take a
+  // slightly more pragmatic approach and set a cache control of 1 hour.
+  res.set('Cache-Control', 'public, max-age=3600, must-revalidate')
+
   res.status(200).json(combined);
 }
